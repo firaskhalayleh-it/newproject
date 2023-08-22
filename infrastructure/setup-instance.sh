@@ -8,7 +8,7 @@ sudo apt upgrade -y
 curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 
 sudo apt install nodejs jq curl -y
-
+cd /home/ubuntu
 git clone https://github.com/firaskhalayleh-it/newproject.git app
 cd app 
 npm install
