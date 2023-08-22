@@ -1,4 +1,4 @@
-export const data = [
+export const  data = [
   {
     "id": 1,
     "title": "To Kill a Mockingbird",
