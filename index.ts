@@ -4,6 +4,7 @@ const app = express();
 const port = process.env.port || 3000;
 app.use(express.json());
 
+
 app.get('/books', (req, res) => {
 
     res.send(data)
@@ -71,7 +72,9 @@ app.delete('/books/delete/:id', (req, res) => {
       console.log('Matched Books:', matchedBooks); // Debug log to see the matched books
       res.send(matchedBooks);
   });
-  
+  app.get("/health",(req ,res)=>{
+    res.sendStatus(200);
+  })
 
   app.get('/books/year', (req, res) => {
     console.log('Received request for /books/year');

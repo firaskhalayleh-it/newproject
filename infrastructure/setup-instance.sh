@@ -14,22 +14,10 @@ cd app
 npm install
 
 npm run build 
+sudo mv ./infrastructure/app.service /etc/systemd/system/
 
-# create app & github users
-sudo useradd --system --create-home --shell /usr/sbin/nologin app
-sudo useradd -g app --no-create-home --no-user-group --home-dir /home/app --shell /bin/bash github
-sudo usermod --append --groups app github
-
-# deploy app
-repo="khaledez/echoinfo"
-download_url=$(curl "https://api.github.com/repos/$repo/releases/latest" | jq --raw-output '.assets[0].browser_download_url')
-asset_name=$(curl "https://api.github.com/repos/$repo/releases/latest" | jq --raw-output '.assets[0].name')
-
-curl -O "https://raw.githubusercontent.com/$repo/main/infrastructure/app.service"
-sudo mv app.service /etc/systemd/system/
 sudo systemctl daemon-reload
 sudo systemctl enable app.service
-
-sudo -u app sh -c "mkdir -p /home/app/app && cd /home/app/app && curl -LO $download_url && mv $asset_name app.tar.gz && tar xzvf app.tar.gz && npm install --omit=dev"
+sudo systemctl start app
 
 sudo reboot
