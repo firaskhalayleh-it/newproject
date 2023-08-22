@@ -11,7 +11,7 @@ Group=ubuntu
 WorkingDirectory=/home/ubuntu/app
 ExecStart=/usr/bin/node ./dist/index.js
 Restart=always
-Environment=PORT=80
+Environment=port=80
 
 [Install]
 WantedBy=multi-user.target
